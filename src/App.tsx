@@ -1,38 +1,31 @@
-import * as React from "react"
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+import React, { useContext } from "react"
+import { Home } from "./components";
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
+//Authentication - contextProvider Admin and Business
+
+import { AuthContext, AuthProvider } from "./contexts/AuthProvider";
+import { AuthStateInterface } from "./contexts/AuthProvider/interfaces";
+import { BusinessContext, BusinessProvider } from "./contexts/BusinessProvider";
+import { BusinessStateInterface } from "./contexts/BusinessProvider/interfaces";
+
+//Themes - contextProvider and theme
+import { ChakraProvider } from '@chakra-ui/react';
+import { orangeTheme } from "./themes";
+import '../src/themes/orangeTheme/styles.css';
+
+export const App: React.VFC = () => (
+
+  // const { a } = useContext(AuthContext as AuthStateInterface);
+  // const { e, ub } useContext(BusinessContext as BusinessStateInterface);
+
+  <AuthProvider>
+    <BusinessProvider>
+      <h1>
+        {/* {{ a, e, ub }} */}
+      </h1>
+      <ChakraProvider theme={orangeTheme}>
+        <Home />
+      </ChakraProvider>
+    </BusinessProvider>
+  </AuthProvider>
 )
