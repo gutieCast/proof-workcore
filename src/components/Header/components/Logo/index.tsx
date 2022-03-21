@@ -1,14 +1,14 @@
-import React from 'react'
-import { AspectRatio, Image } from '@chakra-ui/react';
+import { AspectRatio, Image } from '@chakra-ui/react'
 
-const Logo: React.FC = () => {
-    return (
-        <AspectRatio maxW={32}>
-            <Image>
-
-            </Image>
-        </AspectRatio>
-    )
+interface LogoInterface {
+  logoBusinessSrc: string;
 }
 
-export { Logo }
+export const Logo = ({ logoBusinessSrc }: LogoInterface) => {
+  return (
+    <AspectRatio>
+      <Image src={logoBusinessSrc} />
+    </AspectRatio>
+  )
+}
+

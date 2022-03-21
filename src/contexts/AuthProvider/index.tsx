@@ -1,7 +1,18 @@
-import { createContext, useState, useEffect } from 'react';
+import { useState, useEffect, createContext, useContext } from 'react';
 import { AuthProviderProps, AuthStateInterface } from './interfaces';
 
-const AuthContext = createContext<AuthStateInterface | null>(null);
+const AuthContext = createContext<AuthStateInterface>(undefined!);
+function createCtx<A>() {
+    const auth = createContext<A | undefined>(undefined);
+    function useCtx() {
+        const c = useContext(auth);
+        if (!c) throw new Error("Debe exisitir un administrador");
+        return c;
+    }
+    return [useCtx, auth.Provider] as const;
+}
+
+const [useCtx, AuthContextProvider] = createCtx<AuthStateInterface>();
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
 
@@ -13,8 +24,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         try {
             if (a === '124') {
                 setIsAuth(true)
-                alert(`Bienvenido, ${a}`);
-
             } else {
                 const message = `El administrador '${a}' no se encuentra registrado`; throw new Error(message);
             }
@@ -25,14 +34,14 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     }, [])
 
     return (
-        <AuthContext.Provider value={{
+        <AuthContextProvider value={{
             isAuth,
             setIsAuth,
             a,
             setA,
         }} >
             {children}
-        </AuthContext.Provider>
+        </AuthContextProvider>
     )
 }
 

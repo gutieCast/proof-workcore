@@ -1,31 +1,49 @@
-import React, { useContext } from "react"
-import { Home } from "./components";
+import React, { useEffect, useState } from "react"
 
-//Authentication - contextProvider Admin and Business
+//Main component: Home screen
+import { Home } from "./Home";
 
-import { AuthContext, AuthProvider } from "./contexts/AuthProvider";
-import { AuthStateInterface } from "./contexts/AuthProvider/interfaces";
-import { BusinessContext, BusinessProvider } from "./contexts/BusinessProvider";
-import { BusinessStateInterface } from "./contexts/BusinessProvider/interfaces";
+//Hook hardcoded to get 'a' 'e' & 'ub'
+import { useAuth } from './hooks/useAuth'
+
+// data
+import { useQPEmpresa } from "./hooks/empresa/useQPEmpresa";
 
 //Themes - contextProvider and theme
 import { ChakraProvider } from '@chakra-ui/react';
 import { orangeTheme } from "./themes";
 import '../src/themes/orangeTheme/styles.css';
 
-export const App: React.VFC = () => (
+const App: React.VFC = () => {
 
-  // const { a } = useContext(AuthContext as AuthStateInterface);
-  // const { e, ub } useContext(BusinessContext as BusinessStateInterface);
+  //Call to API
+  const { nombre, logo } = useQPEmpresa();
 
-  <AuthProvider>
-    <BusinessProvider>
-      <h1>
-        {/* {{ a, e, ub }} */}
-      </h1>
-      <ChakraProvider theme={orangeTheme}>
-        <Home />
-      </ChakraProvider>
-    </BusinessProvider>
-  </AuthProvider>
-)
+  //States to print the info
+  const [logoBusiness, setLogoBusiness] = useState('')
+  const [businessName, setBusinessName] = useState('');
+
+
+  //Extract data
+  useEffect(() => {
+    console.log('render');
+    setBusinessName(nombre);
+    setLogoBusiness(logo);
+  });
+
+  console.log('render');
+
+
+  return (
+
+    <ChakraProvider theme={orangeTheme}>
+      <Home
+        //Header
+        businessName={businessName}
+        logoBusiness={logoBusiness}
+      />
+    </ChakraProvider>
+  )
+}
+
+export { App };
