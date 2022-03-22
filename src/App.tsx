@@ -6,8 +6,10 @@ import { Home } from "./Home";
 //Hook hardcoded to get 'a' 'e' & 'ub'
 import { useAuth } from './hooks/useAuth'
 
-// data
-import { useQPEmpresa } from "./hooks/empresa/useQPEmpresa";
+// Custom hook to handle api request
+import { useEmpresa } from "./hooks/useEmpresa";
+
+import { BusinessStateInterface } from "./contexts/BusinessProvider/interfaces";
 
 //Themes - contextProvider and theme
 import { ChakraProvider } from '@chakra-ui/react';
@@ -17,25 +19,22 @@ import '../src/themes/orangeTheme/styles.css';
 const App: React.VFC = () => {
 
   //Call to API
-  const { nombre, logo } = useQPEmpresa();
+  const { businessData } = useEmpresa();
 
   //States to print the info
   const [logoBusiness, setLogoBusiness] = useState('')
   const [businessName, setBusinessName] = useState('');
 
 
-  //Extract data
+  //Trigger with data
   useEffect(() => {
     console.log('render');
-    setBusinessName(nombre);
-    setLogoBusiness(logo);
+    setBusinessName(businessData.nombre);
+    setLogoBusiness(businessData.logo);
   });
-
-  console.log('render');
 
 
   return (
-
     <ChakraProvider theme={orangeTheme}>
       <Home
         //Header

@@ -1,11 +1,3 @@
-export type TApiResponse = {
-    status: Number;
-    statusText: String;
-    data: any;
-    error: any;
-    loading: Boolean;
-};
-
 export interface BussinessDataAPI {
     id_empresa: string,
     nombre: string,
