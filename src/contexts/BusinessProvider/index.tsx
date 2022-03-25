@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../AuthProvider';
-import { BusinessStateInterface, BusinessProviderProps } from './interfaces';
+import { BusinessStateInterface, BusinessProviderProps } from '../../interfaces/BusinessProviderInterfaces';
 
-const BusinessContext = createContext<BusinessStateInterface>(undefined!)
+const BusinessContext = createContext<BusinessStateInterface>({} as BusinessStateInterface)
 
 const BusinessProvider = ({ children }: BusinessProviderProps) => {
     const [e, setE] = useState('');
@@ -10,12 +10,13 @@ const BusinessProvider = ({ children }: BusinessProviderProps) => {
 
     const { a } = useContext(AuthContext);
 
-    // Harcoding 
     useEffect(() => {
+        // Harcoding 
         if (a === '124') {
             setE('28');
             setUb('http://workcore.net/')
         }
+        a
     }, [])
 
     return (

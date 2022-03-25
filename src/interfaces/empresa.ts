@@ -1,4 +1,4 @@
-export interface BussinessDataAPI {
+export interface BusinessDataAPI {
     id_empresa: string,
     nombre: string,
     domicilio: string,
@@ -22,5 +22,5 @@ export interface BussinessDataAPI {
 }
 
 export interface ResponseBusinessDataAPI {
-    records: BussinessDataAPI;
+    records: BusinessDataAPI;
 }

@@ -6,36 +6,7 @@
 
 //ACERCA DE
 
-export interface BusinessContent {
-    ID_CONTENIDO: string,
-    TIPO_CONTENIDO: string,
-    CATEGORIA: string,
-    TITULO: string,
-    CLICK: string,
-    CONTENIDO: string,
-    FECHA_ALTA: string,
-    COMENTARIOS: string[],
-    ADJUNTOS: string[]
-}
 
-export interface Categories {
-    CATEGORIA: string,
-    CANTIDAD: string,
-}
-
-export interface BusinessContentTracking {
-    ID_CONTENIDO: string,
-    TITULO: string,
-    CLICK?: string,
-}
-
-export interface ResponseBusinessContent {
-    records: BusinessContent[],
-    otras: string[];
-    categorias: Categories[];
-    ultimas: BusinessContentTracking[];
-    masleidas: BusinessContentTracking[];
-}
 
 
 //PRODUCTOS

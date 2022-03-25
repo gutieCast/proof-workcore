@@ -1,47 +1,46 @@
 import { useState, useEffect, createContext, useContext } from 'react';
-import { AuthProviderProps, AuthStateInterface } from './interfaces';
+import { AuthProviderProps, AuthStateInterface } from '../../interfaces/AuthInterfaces';
 
-const AuthContext = createContext<AuthStateInterface>(undefined!);
-function createCtx<A>() {
-    const auth = createContext<A | undefined>(undefined);
-    function useCtx() {
-        const c = useContext(auth);
-        if (!c) throw new Error("Debe exisitir un administrador");
-        return c;
-    }
-    return [useCtx, auth.Provider] as const;
-}
-
-const [useCtx, AuthContextProvider] = createCtx<AuthStateInterface>();
+const AuthContext = createContext<AuthStateInterface>({} as AuthStateInterface);
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
 
-    //Hardcoding
-    const [a, setA] = useState<string>('124');
+    const [a, setA] = useState<string>('');
     const [isAuth, setIsAuth] = useState<boolean>(false);
 
     useEffect(() => {
-        try {
-            if (a === '124') {
-                setIsAuth(true)
-            } else {
-                const message = `El administrador '${a}' no se encuentra registrado`; throw new Error(message);
-            }
+        const login = (admin: string) => {
+            //Function that sign in with user + pass
+            //Hardcoding
+            setA('124')
+            try {
+                if (admin === '124') {
+                    setIsAuth(true)
+                } else {
+                    const message = `El administrador '${admin}' no se encuentra registrado`;
+                    throw new Error(message);
+                }
 
-        } catch (err: any) {
-            alert(err.message);
+            } catch (err: any) {
+                alert(err.message);
+            }
+            return { login, isAuth, setIsAuth }
         }
+
+        login(a);
+
     }, [])
 
+
     return (
-        <AuthContextProvider value={{
+        <AuthContext.Provider value={{
             isAuth,
             setIsAuth,
             a,
             setA,
         }} >
             {children}
-        </AuthContextProvider>
+        </AuthContext.Provider>
     )
 }
 
