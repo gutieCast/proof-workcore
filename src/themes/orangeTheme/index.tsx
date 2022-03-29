@@ -20,6 +20,40 @@ const orangeTheme = extendTheme({
             700: '#35464b',
         }
     },
+    component: {
+        Text: {
+            variants: {
+                primary: {
+                    color: 'white',
+                    fontSize: 'md',
+                },
+                secondary: {
+                    color: 'gray.700',
+                    fontSize: 'xx-small',
+                    _hover: {
+                        color: 'orange.400',
+                        transition: 'all 0s ease 2s',
+                    }
+                }
+
+            }
+        }
+    },
+    styles: {
+        global: {
+            body: {
+                color: {
+                    variants: {
+                        primary: 'orange.500',
+                        secondary: 'gray.700'
+                    }
+                },
+                a: {
+
+                }
+            }
+        }
+    }
 })
 
 export { orangeTheme }

@@ -1,4 +1,4 @@
 export interface HomeProps {
     logoBusiness: string;
-    businessName: string;
+    nameBusiness: string;
 }

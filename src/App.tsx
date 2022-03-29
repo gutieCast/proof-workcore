@@ -10,8 +10,6 @@ import { useAuth } from './hooks/useAuth'
 // Custom hook to handle api request
 import { useEmpresa } from "./hooks/useEmpresa";
 
-import { BusinessStateInterface } from "./interfaces/BusinessProviderInterfaces";
-
 //Themes - contextProvider and theme
 import { ChakraProvider } from '@chakra-ui/react';
 import { orangeTheme } from "./themes";
@@ -22,17 +20,17 @@ const App: React.VFC = () => {
   const { a, e, ub } = useAuth();
 
   //Call to API
-  const { getBusinessData, businessData, setBusinessData } = useEmpresa();
+  const { getBusinessData, businessData } = useEmpresa();
 
   //States to print the info
   const [logoBusiness, setLogoBusiness] = useState('')
-  const [businessName, setBusinessName] = useState('');
+  const [nameBusiness, setNameBusiness] = useState('');
 
 
   //Trigger with data
   useEffect(() => {
     getBusinessData(a, e, ub);
-    setBusinessName(businessData.nombre);
+    setNameBusiness(businessData.nombre);
     setLogoBusiness(businessData.logo);
   });
 
@@ -41,7 +39,7 @@ const App: React.VFC = () => {
     <ChakraProvider theme={orangeTheme}>
       <Home
         //Header
-        businessName={businessName}
+        nameBusiness={nameBusiness}
         logoBusiness={logoBusiness}
       />
     </ChakraProvider>
