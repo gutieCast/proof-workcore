@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Flex, Box, Stack, useBreakpointValue } from '@chakra-ui/react';
-import { Logo, MainMenu, MenuItem, MenuToggle } from './components';
+import { MainMenu, MenuItem, MenuToggle } from './components';
+import { Logo } from '../ui/Logo';
 
 type HeaderProps = {
     logoBusiness: string;

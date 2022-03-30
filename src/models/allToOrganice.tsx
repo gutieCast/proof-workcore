@@ -94,15 +94,7 @@ export interface ResponsePhotoGallery {
 
 //PORTADA
 
-export interface PhotoLanding {
-    ID_FOTO: string;
-    URL: string;
-    DESCRIPCION: string;
-}
 
-export interface ResponsePhotoLanding {
-    records: PhotoLanding[];
-}
 
 //CONTACTO FORM
 

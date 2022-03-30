@@ -2,7 +2,7 @@ import { api } from '../../utils/axios';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../useAuth';
-import { BusinessContent, BusinessContentAPI } from '../../interfaces/publicaciones'
+import { BusinessContent, BusinessContentAPI } from '../../models/publicaciones'
 import { BusinessContext } from '../../contexts/BusinessProvider';
 
 const usePublicaciones = () => {

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../AuthProvider';
-import { BusinessStateInterface, BusinessProviderProps } from '../../interfaces/BusinessProviderInterfaces';
+import { BusinessStateInterface, BusinessProviderProps } from '../../models/BusinessProviderInterfaces';
 
 const BusinessContext = createContext<BusinessStateInterface>({} as BusinessStateInterface)
 

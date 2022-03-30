@@ -1,18 +1,12 @@
+import { useState } from 'react';
 import { api } from '../../utils/axios';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { useEffect, useState } from 'react';
-import { useAuth } from '../useAuth';
-import { ResponseBusinessDataAPI, BusinessDataAPI } from '../../interfaces/empresa'
-
-
+import { BusinessDataAPI, BusinessData } from '../../models/empresa'
 
 const useEmpresa = () => {
 
-  // const { a, e, ub } = useAuth()
+  const [businessData, setBusinessData] = useState<BusinessData>({} as BusinessData)
 
-  const [businessData, setBusinessData] = useState<BusinessDataAPI>({} as BusinessDataAPI)
-
-  // useEffect(() => {
   const getBusinessData = async (a: string, e: string, ub: string) => {
     try {
       const response: AxiosResponse = await api.get('/empresa/', {
@@ -22,7 +16,7 @@ const useEmpresa = () => {
           ub: ub
         }
       })
-      const { records } = response.data as ResponseBusinessDataAPI;
+      const { records } = response.data;
       setBusinessData(records)
       return businessData
 
@@ -35,7 +29,6 @@ const useEmpresa = () => {
       }
     }
   }
-  // })
 
   return { getBusinessData, businessData, setBusinessData }
 
