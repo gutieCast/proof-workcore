@@ -1,11 +1,25 @@
-import React from 'react';
-import { Button } from '@chakra-ui/react';
+import { LinkBox, LinkOverlay, IconButton } from '@chakra-ui/react';
 
-const SocialButton = () => {
+
+interface SocialButtonProps {
+    name: string,
+    link: string,
+    icon: JSX.Element
+}
+
+const SocialButton = ({ name, link, icon }: SocialButtonProps) => {
     return (
-        <Button>
-            SocialButton
-        </Button>
+        <LinkBox
+            as="article"
+        >
+            <LinkOverlay href={link} isExternal={true}>
+
+            </LinkOverlay>
+            <IconButton
+                aria-label={name}
+                icon={icon}
+            />
+        </LinkBox>
     )
 }
 

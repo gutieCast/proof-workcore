@@ -2,7 +2,7 @@ import React from 'react'
 import { Box } from '@chakra-ui/react'
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
 
-type MenuToggleProps = {
+interface MenuToggleProps {
     toggle: () => void;
     isOpen: boolean;
 }
@@ -10,10 +10,10 @@ type MenuToggleProps = {
 const MenuToggle = ({ toggle, isOpen }: MenuToggleProps): JSX.Element => {
     return (
         <Box
-            alignItems={{ base: 'center', md: 'none' }}
-            display={{ base: 'flex', md: 'none' }}
+            alignItems={{ base: 'center', lg: 'none' }}
+            display={{ base: 'flex', lg: 'none' }}
             h={8}
-            justifyContent={{ base: 'center', md: 'none' }}
+            justifyContent={{ base: 'center', lg: 'none' }}
             onClick={toggle}
             w={8}
         >
